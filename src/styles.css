@@ -1,0 +1,43 @@
+body {
+  position: relative;
+  overflow-y: hidden;
+  font-family: Arial, Helvetica, Helvetica Neue;
+  font-size: 13px !important;
+}
+
+
+@media print {
+
+  /*
+  * hide everything BUT what shall be printed
+  */
+  body * {
+    visibility: hidden;
+  }
+
+  .printer-content,
+  .printer-content * {
+    visibility: visible !important;
+  }
+
+  .printer-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  /**
+  * ensure html and body
+  * have no margins, no padding,
+  * grow and overflow as needed
+  */
+  html,
+  body,
+  #root {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+}

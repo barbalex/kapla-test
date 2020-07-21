@@ -1,31 +1,28 @@
-/**
- * This file will automatically be loaded by webpack and run in the "renderer" context.
- * To learn more about the differences between the "main" and the "renderer" context in
- * Electron, visit:
- *
- * https://electronjs.org/docs/tutorial/application-architecture#main-and-renderer-processes
- *
- * By default, Node.js integration in this file is disabled. When enabling Node.js integration
- * in a renderer process, please be aware of potential security implications. You can read
- * more about security risks here:
- *
- * https://electronjs.org/docs/tutorial/security
- *
- * To enable Node.js integration in this file, open up `main.js` and enable the `nodeIntegration`
- * flag:
- *
- * ```
- *  // Create the browser window.
- *  mainWindow = new BrowserWindow({
- *    width: 800,
- *    height: 600,
- *    webPreferences: {
- *      nodeIntegration: true
- *    }
- *  });
- * ```
- */
+import React from 'react'
+import { render } from 'react-dom'
+import styled, { createGlobalStyle } from 'styled-components'
 
-import './index.css';
+import './styles.css'
 
-console.log('👋 This message is being logged by "renderer.js", included via webpack');
+const Container = styled.div`
+  background-color: white;
+  height: 297mm;
+  width: 210mm;
+  box-shadow: inset 0 0 1px 1px red !important;
+`
+// without @page the _second_ page printed (!) is A3 in printToPdf
+const GlobalStyle = createGlobalStyle`
+  @page {
+    size: A4 portrait;
+  }
+`
+
+console.log('renderer rendering')
+
+render(
+  <>
+    <GlobalStyle />
+    <Container className="printer-content">example pdf</Container>
+  </>,
+  document.getElementById('root'),
+)
